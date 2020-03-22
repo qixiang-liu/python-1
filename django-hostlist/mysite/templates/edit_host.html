@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>修改主机信息</title>
+</head>
+<body>
+
+<form action="/edit_host/" method="post">
+    <input hidden type="text" name="host_id" value="{{ host.id }}">
+    <p>主机ip：<input type="text" name="host_ip" value="{{ host.ip }}"></p>
+    <p>主机名字：<input type="text" name="host_name" value="{{ host.name }}"></p>
+    <p>主机备注：<input type="text" name="host_memo" value="{{ host.memo }}"></p>
+    <p>
+        主机组：
+        <select name="host_group">
+            {% for group in group_list %}
+                <option  value="{{ group.id }}">{{ group.name }}</option>  {# group.name 后端提交的其实是group的id#}
+            {% endfor %}
+        </select>
+    </p>
+    <p><input type="submit"></p>
+</form>
+</body>
+</html>

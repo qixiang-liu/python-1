@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Title</title>
+    <style>
+        .container {
+            margin-top: 100px;
+        {# 下移动 #}
+        }
+    </style>
+    <link rel="stylesheet" href="/static/bs/css/bootstrap.css">
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">  {# 占用比率，右移动 #}
+            <form action="/edit/{{ obj.id }}" method="post">
+                {% csrf_token %}
+{#                <input hidden type="text" name="book_id" value="{{ obj.pk }}">#}
+                <p>书籍名称 <input type="text" name="title" value="{{ obj.title }}"></p>
+                <p>书籍价格 <input type="text" name="price" value="{{ obj.price }}"></p>
+                {# 浏览器接受的只能是一个值，不能是一个变量，或者方法，所以这里使用一个过滤器，定义下时间的格式# #}
+                <p>出版时间 <input type="date" name="date" value="{{ obj.create_time|date:'Y-d-m' }}"></p>
+                <p>出版社<select name="publish_id" id="">
+                    {% for publish in publish_list %}
+                        {% if obj.publish == publish %}
+                            <option selected value="{{ publish.pk }}">{{ publish.name }}</option>
+                        {% else %}
+                            {#                                        publish.pk的值就是主键的值#}
+                            <option value="{{ publish.pk }}">{{ publish.name }}</option>
+
+                        {% endif %}
+                    {% endfor %}
+                </select></p>
+
+                <p>作者
+                    <select name="author_id_list" id="" multiple>  {# multiple的意思是可以多选 #}
+                        {% for author in author_list %}
+                            {% if author in obj.author.all %}
+                                <option selected value="{{ author.id }}">{{ author.name }}</option>
+                            {% else %}
+                                <option value="{{ author.id }}">{{ author.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </p>
+                <input type="submit" class="btn btn-default">
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+<body>

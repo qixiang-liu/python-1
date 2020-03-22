@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <title>书列表</title>
+</head>
+<body>
+
+<div class="container">
+
+    <a href="/add_book/" class="btn btn-success">添加新书的按钮</a>
+    <!-- Default panel contents -->
+    <div class="panel panel-primary">
+    <div class="panel-heading">书籍管理</div>
+    <div class="panel-body">
+
+    <!-- Table -->
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>书名</th>
+             <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {#    在django中，可以在html中使用for循环    模板语言的for循环#}
+        {% for book in book_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>  {# forloop.counter 意思是拿到for循环的每一个connte值 #}
+                <td>{{ book.title }}</td>
+            <td><a href="/delete_book/?id={{ book.id }}" class="btn btn-danger">删除</a></td>
+            <td><a href="/edit_book/?id={{ book.id }}" class="btn btn-info">编辑</a></td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+            <p>...</p>
+    </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta http-equiv="X-UA-Compatible" content="IE=edge">#}
+{#    <meta name="viewport" content="width=device-width,initial-scale=1">#}
+{#    <title>添加新书</title>#}
+{#</head>#}
+{#<body>#}
+{#<form action="/add_book/" method="post">#}
+{#    <input type="text" name="book_name">#}
+{##}
+{#    <input type="submit" value="添加新书">#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>书列表</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container" style="margin-top: 100px">{# style="margin-top: 100px 意思是距离页眉100px #}
+    <div class="row"> {# 行 #}
+        <div class="col-md-6 col-md-offset-3"> {# from表单占用6份，左边空3份 #}
+            <div class="panel panel-primary"> {# 修改前端显示的颜色 #}
+                <div class="panel-heading">添加新书</div>
+                <div class="panel-body">
+
+                    <form class="form-horizontal" action="/add_book/" method="post">
+                        <div class="form-group">
+                            <label for="inputbookname" class="col-sm-2 control-label">添加新书</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="book_name" class="form-control" id="inputbookname">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-8">
+                                <input type="submit" class="btn btn-primary btn-block" value="添加">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

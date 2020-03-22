@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Title</title>
+
+</head>
+<body>
+{#{% csrf_token %}#}
+{#<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>#}
+{#<p>用户名：<input type="text" id="user"><span class="error"></span></p>#}
+{#<p>密码：<input type="text" id="user"><span class="error"></span></p>#}
+{##}
+{#<script>#}
+{#    $("#user").blur(function () {#}
+{#        $.ajax({#}
+{#            url:"{% url 'login' %}",#}
+{#            type:"post",#}
+{#            data:{#}
+{#                'user':$('#user').val(),#}
+{#                "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val()#}
+{#            },#}
+{#            success:function (data) {#}
+{#                var data=JSON.parse(data);#}
+{#                if (!data.state){#}
+{#                    $('.error').html(data.msg).css('color','red');#}
+{#                }else{#}
+{#                    $('.error').html(data.msg).css('color','green');#}
+{#                }#}
+{#            }#}
+{#        })#}
+{#    });#}
+{##}
+{#</script>#}
+
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    用户名：<input type="text" name="user">
+    密码：<input type="password" name="pwd">
+    <input type="submit">
+</form>
+</body>
+</html>
